@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Patients</title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.classless.min.css">
+  <link rel="stylesheet" href="css/overrides.css">
+  <script defer src="js/storage.js"></script>
+  <script defer src="js/includes.js"></script>
+  <script defer src="js/patients.js"></script>
+</head>
+<body>
+<div data-include="layout/header.html"></div>
+<main>
+  <h2>Patients</h2>
+  <form id="patient-form">
+    <input type="hidden" id="patient-id">
+    <label>Name <input id="patient-name" required></label>
+    <button type="submit">Save</button>
+  </form>
+  <table id="patients-table">
+    <thead>
+      <tr><th>Name</th><th>Actions</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</main>
+<div data-include="layout/footer.html"></div>
+</body>
+</html>

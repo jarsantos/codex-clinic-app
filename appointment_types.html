@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Appointment Types</title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.classless.min.css">
+  <link rel="stylesheet" href="css/overrides.css">
+  <script defer src="js/storage.js"></script>
+  <script defer src="js/includes.js"></script>
+  <script defer src="js/appointment_types.js"></script>
+</head>
+<body>
+<div data-include="layout/header.html"></div>
+<main>
+  <h2>Appointment Types</h2>
+  <form id="type-form">
+    <input type="hidden" id="type-id">
+    <label>Name <input id="type-name" required></label>
+    <label>Default Duration (minutes) <input type="number" id="type-duration" required></label>
+    <button type="submit">Save</button>
+  </form>
+  <table id="types-table">
+    <thead>
+      <tr><th>Name</th><th>Duration</th><th>Actions</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</main>
+<div data-include="layout/footer.html"></div>
+</body>
+</html>
