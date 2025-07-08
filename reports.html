@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Revenue Reports</title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.classless.min.css">
+  <link rel="stylesheet" href="css/overrides.css">
+  <script defer src="js/storage.js"></script>
+  <script defer src="js/includes.js"></script>
+  <script defer src="js/reports.js"></script>
+</head>
+<body>
+<div data-include="layout/header.html"></div>
+<main>
+  <h2>Revenue Reports</h2>
+  <form id="report-form">
+    <label>Group By
+      <select id="report-group">
+        <option value="clinician">Clinician</option>
+        <option value="specialty">Specialty</option>
+        <option value="patient">Patient</option>
+        <option value="location">Location</option>
+      </select>
+    </label>
+    <label>Start Date <input type="date" id="report-start"></label>
+    <label>End Date <input type="date" id="report-end"></label>
+    <button type="submit">Generate</button>
+  </form>
+  <table id="report-table">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+</main>
+<div data-include="layout/footer.html"></div>
+</body>
+</html>

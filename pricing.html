@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Pricing Rules</title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.classless.min.css">
+  <link rel="stylesheet" href="css/overrides.css">
+  <script defer src="js/storage.js"></script>
+  <script defer src="js/includes.js"></script>
+  <script defer src="js/pricing.js"></script>
+</head>
+<body>
+<div data-include="layout/header.html"></div>
+<main>
+  <h2>Pricing Rules</h2>
+  <p>Rules are evaluated in the following order:</p>
+  <ol>
+    <li>Appointment Type + Patient</li>
+    <li>Appointment Type + Clinician (+Location)</li>
+    <li>Appointment Type + Duration (base)</li>
+  </ol>
+  <form id="pricing-form">
+    <label>Appointment Type
+      <select id="price-type"></select>
+    </label>
+    <label>Patient
+      <select id="price-patient"></select>
+    </label>
+    <label>Clinician
+      <select id="price-clinician"></select>
+    </label>
+    <label>Location
+      <select id="price-location"></select>
+    </label>
+    <label>Duration (minutes)<input type="number" id="price-duration"></label>
+    <label>Price <input type="number" id="price-value" required></label>
+    <button type="submit">Add Rule</button>
+  </form>
+  <table id="pricing-table">
+    <thead>
+      <tr><th>Type</th><th>Patient</th><th>Clinician</th><th>Location</th><th>Duration</th><th>Price</th><th>Actions</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</main>
+<div data-include="layout/footer.html"></div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Clinicians</title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.classless.min.css">
+  <link rel="stylesheet" href="css/overrides.css">
+  <script defer src="js/storage.js"></script>
+  <script defer src="js/includes.js"></script>
+  <script defer src="js/clinicians.js"></script>
+</head>
+<body>
+<div data-include="layout/header.html"></div>
+<main>
+  <h2>Clinicians</h2>
+  <form id="clinician-form">
+    <input type="hidden" id="clinician-id">
+    <label>Name <input id="clinician-name" required></label>
+    <label>Specialty
+      <select id="clinician-specialty">
+        <option>Speech Therapy</option>
+        <option>Psychology</option>
+        <option>Occupational Therapy</option>
+      </select>
+    </label>
+    <button type="submit">Save</button>
+  </form>
+  <table id="clinicians-table">
+    <thead>
+      <tr><th>Name</th><th>Specialty</th><th>Actions</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</main>
+<div data-include="layout/footer.html"></div>
+</body>
+</html>
