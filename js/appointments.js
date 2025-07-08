@@ -38,19 +38,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   populate(patientSelect, patients);
-  populate(clinicianSelect, clinicians);
   populate(typeSelect, types);
+  function filterClinicians() {
+    const t = types.find(t => t.id == typeSelect.value);
+    let list = clinicians;
+    if (t) {
+      list = clinicians.filter(c => c.specialty === t.specialty);
+    }
+    populate(clinicianSelect, list);
+  }
+  filterClinicians();
+  const initialType = types.find(t => t.id == typeSelect.value);
+  if (initialType) {
+    durationInput.value = initialType.default_duration_minutes;
+  }
   populate(locationSelect, locations);
+  updatePrice();
 
   typeSelect.addEventListener('change', () => {
     const t = types.find(t => t.id == typeSelect.value);
-    if (t) durationInput.value = t.default_duration_minutes;
+    if (t) {
+      durationInput.value = t.default_duration_minutes;
+    }
+    filterClinicians();
     updatePrice();
   });
   clinicianSelect.addEventListener('change', updatePrice);
   patientSelect.addEventListener('change', updatePrice);
   locationSelect.addEventListener('change', updatePrice);
-  durationInput.addEventListener('input', updatePrice);
 
   function updatePrice() {
     const price = computePrice(typeSelect.value, patientSelect.value, clinicianSelect.value, locationSelect.value, durationInput.value);
@@ -85,13 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
       appointment_type: parseInt(typeSelect.value, 10),
       duration_minutes: parseInt(durationInput.value, 10),
       date_time: document.getElementById('appointment-datetime').value,
-      status: document.getElementById('appointment-status').value,
+      status: 'planned',
       price: parseFloat(priceInput.value)
     };
     appointments.push(appointment);
     saveData('appointments', appointments);
     form.reset();
+    filterClinicians();
+    const tReset = types.find(t => t.id == typeSelect.value);
+    if (tReset) {
+      durationInput.value = tReset.default_duration_minutes;
+    }
     form.dataset.manual = '';
+    updatePrice();
     render();
   });
 

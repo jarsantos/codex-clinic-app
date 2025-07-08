@@ -16,12 +16,19 @@
   <form id="type-form">
     <input type="hidden" id="type-id">
     <label>Name <input id="type-name" required></label>
+    <label>Specialty
+      <select id="type-specialty">
+        <option>Speech Therapy</option>
+        <option>Psychology</option>
+        <option>Occupational Therapy</option>
+      </select>
+    </label>
     <label>Default Duration (minutes) <input type="number" id="type-duration" required></label>
     <button type="submit">Save</button>
   </form>
   <table id="types-table">
     <thead>
-      <tr><th>Name</th><th>Duration</th><th>Actions</th></tr>
+      <tr><th>Name</th><th>Specialty</th><th>Duration</th><th>Actions</th></tr>
     </thead>
     <tbody></tbody>
   </table>
