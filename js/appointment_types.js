@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tableBody.innerHTML = '';
     types.forEach(t => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${t.name}</td><td>${t.default_duration_minutes}</td><td><button data-id="${t.id}" data-action="edit">Edit</button> <button data-id="${t.id}" data-action="delete">Delete</button></td>`;
+      tr.innerHTML = `<td>${t.name}</td><td>${t.specialty}</td><td>${t.default_duration_minutes}</td><td><button data-id="${t.id}" data-action="edit">Edit</button> <button data-id="${t.id}" data-action="delete">Delete</button></td>`;
       tableBody.appendChild(tr);
     });
   }
@@ -16,13 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const id = document.getElementById('type-id').value;
     const name = document.getElementById('type-name').value.trim();
+    const specialty = document.getElementById('type-specialty').value;
     const duration = parseInt(document.getElementById('type-duration').value, 10);
     if (id) {
       const t = types.find(t => t.id == id);
       t.name = name;
+      t.specialty = specialty;
       t.default_duration_minutes = duration;
     } else {
-      types.push({ id: nextId(types), name, default_duration_minutes: duration });
+      types.push({ id: nextId(types), name, specialty, default_duration_minutes: duration });
     }
     saveData('appointmentTypes', types);
     form.reset();
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const t = types.find(t => t.id == id);
       document.getElementById('type-id').value = t.id;
       document.getElementById('type-name').value = t.name;
+      document.getElementById('type-specialty').value = t.specialty;
       document.getElementById('type-duration').value = t.default_duration_minutes;
     } else if (action === 'delete') {
       types = types.filter(t => t.id != id);

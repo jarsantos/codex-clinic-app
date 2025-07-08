@@ -18,24 +18,17 @@
     <label>Patient
       <select id="appointment-patient"></select>
     </label>
-    <label>Clinician
-      <select id="appointment-clinician"></select>
-    </label>
     <label>Appointment Type
       <select id="appointment-type"></select>
+    </label>
+    <label>Clinician
+      <select id="appointment-clinician"></select>
     </label>
     <label>Location
       <select id="appointment-location"></select>
     </label>
-    <label>Duration (minutes)<input type="number" id="appointment-duration" required></label>
+    <label>Duration (minutes)<input type="number" id="appointment-duration" readonly></label>
     <label>Date & Time <input type="datetime-local" id="appointment-datetime" required></label>
-    <label>Status
-      <select id="appointment-status">
-        <option value="planned">Planned</option>
-        <option value="completed">Completed</option>
-        <option value="cancelled">Cancelled</option>
-      </select>
-    </label>
     <label>Price <input type="number" id="appointment-price" required></label>
     <button type="submit">Save</button>
   </form>
