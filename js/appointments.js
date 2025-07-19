@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const tr = document.createElement('tr');
       const patient = patients.find(p => p.id == a.patient_id)?.name || '';
       const clinician = clinicians.find(c => c.id == a.clinician_id)?.name || '';
-      tr.innerHTML = `<td>${patient}</td><td>${clinician}</td><td>${a.date_time}</td><td>${a.status}</td><td>${a.price}</td><td><button data-id="${a.id}" data-action="delete">Eliminar</button></td>`;
+      tr.innerHTML = `<td>${patient}</td><td>${clinician}</td><td>${a.date_time}</td><td>${a.status}</td><td>${a.price}</td><td><button class="icon-btn" data-id="${a.id}" data-action="delete" aria-label="Eliminar">🗑️</button></td>`;
       tableBody.appendChild(tr);
     });
   }
