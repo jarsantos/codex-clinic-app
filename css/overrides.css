@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  /* offset page content so it doesn't sit under the fixed sidebar */
+  margin-left: 240px;
 }
 
 #side-menu {
@@ -9,7 +11,8 @@ body {
   bottom: 0;
   width: 200px;
   padding: 1rem;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
+  border-right: 1px solid #ccc;
 }
 
 /* ensure the side navigation displays items vertically */
@@ -37,6 +40,5 @@ body {
 header,
 main,
 footer {
-  margin-left: 220px;
   padding: 1rem;
 }
