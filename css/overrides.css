@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  /* offset page content so it doesn't sit under the fixed sidebar */
+  margin-left: 240px;
 }
 
 #side-menu {
@@ -38,6 +40,5 @@ body {
 header,
 main,
 footer {
-  margin-left: 240px;
   padding: 1rem;
 }
