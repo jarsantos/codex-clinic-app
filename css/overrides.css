@@ -8,3 +8,9 @@ nav ul {
   list-style: none;
   padding: 0;
 }
+
+/* smaller buttons used for table action icons */
+.icon-btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+}

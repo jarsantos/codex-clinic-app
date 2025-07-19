@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tableBody.innerHTML = '';
     patients.forEach(p => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${p.name}</td><td><button data-id="${p.id}" data-action="edit">Editar</button> <button data-id="${p.id}" data-action="delete">Eliminar</button></td>`;
+      tr.innerHTML = `<td>${p.name}</td><td><button class="icon-btn" data-id="${p.id}" data-action="edit" aria-label="Editar">✏️</button> <button class="icon-btn" data-id="${p.id}" data-action="delete" aria-label="Eliminar">🗑️</button></td>`;
       tableBody.appendChild(tr);
     });
   }

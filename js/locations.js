@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tableBody.innerHTML = '';
     locations.forEach(l => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${l.name}</td><td><button data-id="${l.id}" data-action="edit">Editar</button> <button data-id="${l.id}" data-action="delete">Eliminar</button></td>`;
+      tr.innerHTML = `<td>${l.name}</td><td><button class="icon-btn" data-id="${l.id}" data-action="edit" aria-label="Editar">✏️</button> <button class="icon-btn" data-id="${l.id}" data-action="delete" aria-label="Eliminar">🗑️</button></td>`;
       tableBody.appendChild(tr);
     });
   }
