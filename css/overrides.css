@@ -9,7 +9,8 @@ body {
   bottom: 0;
   width: 200px;
   padding: 1rem;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
+  border-right: 1px solid #ccc;
 }
 
 /* ensure the side navigation displays items vertically */
@@ -37,6 +38,6 @@ body {
 header,
 main,
 footer {
-  margin-left: 220px;
+  margin-left: 240px;
   padding: 1rem;
 }
