@@ -40,13 +40,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const durationInput = document.getElementById('price-duration');
 
-  typeSelect.addEventListener('change', () => {
+  function updateFields() {
     const t = types.find(tp => tp.id == typeSelect.value);
     if (t) {
       specialtySelect.value = t.specialty;
+      specialtySelect.disabled = true;
       durationInput.value = t.default_duration_minutes;
+      durationInput.readOnly = true;
+      specialtySelect.required = false;
+    } else {
+      specialtySelect.disabled = false;
+      durationInput.readOnly = false;
+      specialtySelect.required = true;
     }
-  });
+  }
+
+  typeSelect.addEventListener('change', updateFields);
+  updateFields();
 
   function render() {
     tableBody.innerHTML = '';
@@ -63,6 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', e => {
     e.preventDefault();
+    if (!typeSelect.value && !specialtySelect.value) {
+      alert('Selecione um Tipo de Consulta ou uma Especialidade.');
+      return;
+    }
     const rule = {
       id: nextId(rules),
       typeId: typeSelect.value || null,
@@ -76,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     rules.push(rule);
     saveData('pricingRules', rules);
     form.reset();
+    updateFields();
     render();
   });
 
