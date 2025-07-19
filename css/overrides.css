@@ -1,10 +1,29 @@
 body {
-  max-width: 900px;
-  margin: auto;
+  margin: 0;
 }
+
+#side-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  padding: 1rem;
+  background-color: #f0f0f0;
+}
+
 nav ul {
-  display: flex;
-  gap: 1rem;
   list-style: none;
   padding: 0;
+}
+
+#side-menu li {
+  margin-bottom: 0.5rem;
+}
+
+header,
+main,
+footer {
+  margin-left: 220px;
+  padding: 1rem;
 }
