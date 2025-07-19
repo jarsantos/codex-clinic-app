@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Appointments</title>
+  <title>Consultas</title>
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.classless.min.css">
   <link rel="stylesheet" href="css/overrides.css">
   <script defer src="js/storage.js"></script>
@@ -12,32 +12,32 @@
 <body>
 <div data-include="layout/header.html"></div>
 <main>
-  <h2>Appointments</h2>
+  <h2>Consultas</h2>
   <form id="appointment-form">
     <input type="hidden" id="appointment-id">
-    <label>Appointment Type
+    <label>Tipo de Consulta
       <select id="appointment-type"></select>
     </label>
-    <label>Specialty
+    <label>Especialidade
       <select id="appointment-specialty"></select>
     </label>
-    <label>Duration (minutes)<input type="number" id="appointment-duration"></label>
-    <label>Location
+    <label>Duração (minutos)<input type="number" id="appointment-duration"></label>
+    <label>Local
       <select id="appointment-location"></select>
     </label>
-    <label>Clinician
+    <label>Profissional
       <select id="appointment-clinician"></select>
     </label>
-    <label>Patient
+    <label>Paciente
       <select id="appointment-patient"></select>
     </label>
-    <label>Date & Time <input type="datetime-local" id="appointment-datetime" required></label>
-    <label>Price <input type="number" id="appointment-price" required></label>
-    <button type="submit">Save</button>
+    <label>Data & Hora <input type="datetime-local" id="appointment-datetime" required></label>
+    <label>Preço <input type="number" id="appointment-price" required></label>
+    <button type="submit">Guardar</button>
   </form>
   <table id="appointments-table">
     <thead>
-      <tr><th>Patient</th><th>Clinician</th><th>Date</th><th>Status</th><th>Price</th><th>Actions</th></tr>
+      <tr><th>Paciente</th><th>Profissional</th><th>Data</th><th>Estado</th><th>Preço</th><th>Ações</th></tr>
     </thead>
     <tbody></tbody>
   </table>

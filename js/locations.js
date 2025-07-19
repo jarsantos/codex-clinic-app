@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let locations = loadData('locations');
   if (!locations.length) {
     locations = [
-      { id: 1, name: 'Office 1' },
-      { id: 2, name: 'Office 2' },
-      { id: 3, name: 'Office 3' },
-      { id: 4, name: 'Office 4' },
-      { id: 5, name: 'Office 5' },
-      { id: 6, name: 'Office 6' },
-      { id: 7, name: 'Office 7' }
+      { id: 1, name: 'Gabinete 1' },
+      { id: 2, name: 'Gabinete 2' },
+      { id: 3, name: 'Gabinete 3' },
+      { id: 4, name: 'Gabinete 4' },
+      { id: 5, name: 'Gabinete 5' },
+      { id: 6, name: 'Gabinete 6' },
+      { id: 7, name: 'Gabinete 7' }
     ];
   }
 
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tableBody.innerHTML = '';
     locations.forEach(l => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${l.name}</td><td><button data-id="${l.id}" data-action="edit">Edit</button> <button data-id="${l.id}" data-action="delete">Delete</button></td>`;
+      tr.innerHTML = `<td>${l.name}</td><td><button data-id="${l.id}" data-action="edit">Editar</button> <button data-id="${l.id}" data-action="delete">Eliminar</button></td>`;
       tableBody.appendChild(tr);
     });
   }

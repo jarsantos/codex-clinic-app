@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Patients</title>
+  <title>Pacientes</title>
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.classless.min.css">
   <link rel="stylesheet" href="css/overrides.css">
   <script defer src="js/storage.js"></script>
@@ -12,15 +12,15 @@
 <body>
 <div data-include="layout/header.html"></div>
 <main>
-  <h2>Patients</h2>
+  <h2>Pacientes</h2>
   <form id="patient-form">
     <input type="hidden" id="patient-id">
-    <label>Name <input id="patient-name" required></label>
-    <button type="submit">Save</button>
+    <label>Nome <input id="patient-name" required></label>
+    <button type="submit">Guardar</button>
   </form>
   <table id="patients-table">
     <thead>
-      <tr><th>Name</th><th>Actions</th></tr>
+        <tr><th>Nome</th><th>Ações</th></tr>
     </thead>
     <tbody></tbody>
   </table>

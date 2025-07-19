@@ -26,17 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
       select.appendChild(opt);
     });
   }
-  populate(typeSelect, types, 'Any Type');
-  specialtySelect.innerHTML = '<option value="">Any Specialty</option>';
+  populate(typeSelect, types, 'Qualquer Tipo');
+  specialtySelect.innerHTML = '<option value="">Qualquer Especialidade</option>';
   specialties.forEach(s => {
     const opt = document.createElement('option');
     opt.value = s;
     opt.textContent = s;
     specialtySelect.appendChild(opt);
   });
-  populate(patientSelect, patients, 'Any Patient');
-  populate(clinicianSelect, clinicians, 'Any Clinician');
-  populate(locationSelect, locations, 'Any Location');
+  populate(patientSelect, patients, 'Qualquer Paciente');
+  populate(clinicianSelect, clinicians, 'Qualquer Profissional');
+  populate(locationSelect, locations, 'Qualquer Local');
 
   const durationInput = document.getElementById('price-duration');
 
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const location = locations.find(l => l.id == r.locationId)?.name || '';
       const clinician = clinicians.find(c => c.id == r.clinicianId)?.name || '';
       const patient = patients.find(p => p.id == r.patientId)?.name || '';
-      tr.innerHTML = `<td>${type}</td><td>${r.specialty||''}</td><td>${r.duration||''}</td><td>${location}</td><td>${clinician}</td><td>${patient}</td><td>${r.price}</td><td><button data-id="${r.id}" data-action="delete">Delete</button></td>`;
+      tr.innerHTML = `<td>${type}</td><td>${r.specialty||''}</td><td>${r.duration||''}</td><td>${location}</td><td>${clinician}</td><td>${patient}</td><td>${r.price}</td><td><button data-id="${r.id}" data-action="delete">Eliminar</button></td>`;
       tableBody.appendChild(tr);
     });
   }
