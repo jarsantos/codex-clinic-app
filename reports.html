@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Revenue Reports</title>
+  <title>Relatórios de Receita</title>
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.classless.min.css">
   <link rel="stylesheet" href="css/overrides.css">
   <script defer src="js/storage.js"></script>
@@ -12,19 +12,19 @@
 <body>
 <div data-include="layout/header.html"></div>
 <main>
-  <h2>Revenue Reports</h2>
+  <h2>Relatórios de Receita</h2>
   <form id="report-form">
-    <label>Group By
+    <label>Agrupar Por
       <select id="report-group">
-        <option value="clinician">Clinician</option>
-        <option value="specialty">Specialty</option>
-        <option value="patient">Patient</option>
-        <option value="location">Location</option>
+        <option value="clinician">Profissional</option>
+        <option value="specialty">Especialidade</option>
+        <option value="patient">Paciente</option>
+        <option value="location">Local</option>
       </select>
     </label>
-    <label>Start Date <input type="date" id="report-start"></label>
-    <label>End Date <input type="date" id="report-end"></label>
-    <button type="submit">Generate</button>
+    <label>Data de Início <input type="date" id="report-start"></label>
+    <label>Data de Fim <input type="date" id="report-end"></label>
+    <button type="submit">Gerar</button>
   </form>
   <table id="report-table">
     <thead></thead>

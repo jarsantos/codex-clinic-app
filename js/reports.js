@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const key = groupKey(a, group);
       totals[key] = (totals[key] || 0) + a.price;
     });
-    tableHead.innerHTML = `<tr><th>${group}</th><th>Revenue</th></tr>`;
+    tableHead.innerHTML = `<tr><th>${group}</th><th>Receita</th></tr>`;
     tableBody.innerHTML = '';
     Object.keys(totals).forEach(k => {
       const tr = document.createElement('tr');

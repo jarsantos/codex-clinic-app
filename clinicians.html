@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Clinicians</title>
+  <title>Profissionais</title>
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.classless.min.css">
   <link rel="stylesheet" href="css/overrides.css">
   <script defer src="js/storage.js"></script>
@@ -12,22 +12,22 @@
 <body>
 <div data-include="layout/header.html"></div>
 <main>
-  <h2>Clinicians</h2>
+  <h2>Profissionais</h2>
   <form id="clinician-form">
     <input type="hidden" id="clinician-id">
-    <label>Name <input id="clinician-name" required></label>
-    <label>Specialty
+    <label>Nome <input id="clinician-name" required></label>
+    <label>Especialidade
       <select id="clinician-specialty">
-        <option>Speech Therapy</option>
-        <option>Psychology</option>
-        <option>Occupational Therapy</option>
+        <option>Terapia da Fala</option>
+        <option>Psicologia</option>
+        <option>Terapia Ocupacional</option>
       </select>
     </label>
-    <button type="submit">Save</button>
+    <button type="submit">Guardar</button>
   </form>
   <table id="clinicians-table">
     <thead>
-      <tr><th>Name</th><th>Specialty</th><th>Actions</th></tr>
+      <tr><th>Nome</th><th>Especialidade</th><th>Ações</th></tr>
     </thead>
     <tbody></tbody>
   </table>
