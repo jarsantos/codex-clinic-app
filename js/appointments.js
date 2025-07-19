@@ -1,16 +1,31 @@
-function computePrice(typeId, patientId, clinicianId, locationId, duration) {
+function computePrice(typeId, specialty, locationId, clinicianId, patientId, duration) {
   const rules = loadData('pricingRules');
-  let rule = rules.find(r => r.typeId == typeId && r.patientId == patientId);
-  if (!rule) {
-    rule = rules.find(r => r.typeId == typeId && r.clinicianId == clinicianId && r.locationId == locationId);
+  let candidates;
+  if (typeId) {
+    candidates = rules.filter(r => r.typeId == typeId);
+  } else {
+    candidates = rules.filter(r => !r.typeId && r.specialty == specialty && r.duration == parseInt(duration,10));
   }
-  if (!rule) {
-    rule = rules.find(r => r.typeId == typeId && r.clinicianId == clinicianId && !r.locationId);
+
+  let best = null;
+  let bestScore = -1;
+
+  for (const r of candidates) {
+    if (locationId === '' && r.locationId) continue;
+    if (r.locationId && r.locationId != locationId) continue;
+    if (clinicianId === '' && r.clinicianId) continue;
+    if (r.clinicianId && r.clinicianId != clinicianId) continue;
+    if (patientId === '' && r.patientId) continue;
+    if (r.patientId && r.patientId != patientId) continue;
+
+    const score = (r.locationId ? 4 : 0) + (r.clinicianId ? 2 : 0) + (r.patientId ? 1 : 0);
+    if (score > bestScore) {
+      bestScore = score;
+      best = r;
+    }
   }
-  if (!rule) {
-    rule = rules.find(r => r.typeId == typeId && r.duration == duration);
-  }
-  return rule ? rule.price : 0;
+
+  return best ? best.price : 0;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const patientSelect = document.getElementById('appointment-patient');
   const clinicianSelect = document.getElementById('appointment-clinician');
   const typeSelect = document.getElementById('appointment-type');
+  const specialtySelect = document.getElementById('appointment-specialty');
   const locationSelect = document.getElementById('appointment-location');
   const durationInput = document.getElementById('appointment-duration');
   const priceInput = document.getElementById('appointment-price');
@@ -27,6 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const clinicians = loadData('clinicians');
   const types = loadData('appointmentTypes');
   const locations = loadData('locations');
+  const specialties = Array.from(new Set([
+    ...clinicians.map(c => c.specialty),
+    ...types.map(t => t.specialty)
+  ]));
 
   function populate(select, items) {
     select.innerHTML = '';
@@ -39,17 +59,29 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   populate(patientSelect, patients);
   populate(typeSelect, types);
+  specialtySelect.innerHTML = '';
+  specialties.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s;
+    specialtySelect.appendChild(opt);
+  });
   function filterClinicians() {
     const t = types.find(t => t.id == typeSelect.value);
-    let list = clinicians;
+    let spec = specialtySelect.value;
     if (t) {
-      list = clinicians.filter(c => c.specialty === t.specialty);
+      spec = t.specialty;
+    }
+    let list = clinicians;
+    if (spec) {
+      list = clinicians.filter(c => c.specialty === spec);
     }
     populate(clinicianSelect, list);
   }
   filterClinicians();
   const initialType = types.find(t => t.id == typeSelect.value);
   if (initialType) {
+    specialtySelect.value = initialType.specialty;
     durationInput.value = initialType.default_duration_minutes;
   }
   populate(locationSelect, locations);
@@ -58,8 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
   typeSelect.addEventListener('change', () => {
     const t = types.find(t => t.id == typeSelect.value);
     if (t) {
+      specialtySelect.value = t.specialty;
       durationInput.value = t.default_duration_minutes;
     }
+    filterClinicians();
+    updatePrice();
+  });
+  specialtySelect.addEventListener('change', () => {
     filterClinicians();
     updatePrice();
   });
@@ -68,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   locationSelect.addEventListener('change', updatePrice);
 
   function updatePrice() {
-    const price = computePrice(typeSelect.value, patientSelect.value, clinicianSelect.value, locationSelect.value, durationInput.value);
+    const price = computePrice(typeSelect.value, specialtySelect.value, locationSelect.value, clinicianSelect.value, patientSelect.value, durationInput.value);
     if (!form.dataset.manual) {
       priceInput.value = price;
     }
@@ -95,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: nextId(appointments),
       patient_id: parseInt(patientSelect.value, 10),
       clinician_id: parseInt(clinicianSelect.value, 10),
-      specialty: clinicians.find(c => c.id == clinicianSelect.value).specialty,
+      specialty: specialtySelect.value,
       location: locations.find(l => l.id == locationSelect.value).name,
       appointment_type: parseInt(typeSelect.value, 10),
       duration_minutes: parseInt(durationInput.value, 10),
@@ -109,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     filterClinicians();
     const tReset = types.find(t => t.id == typeSelect.value);
     if (tReset) {
+      specialtySelect.value = tReset.specialty;
       durationInput.value = tReset.default_duration_minutes;
     }
     form.dataset.manual = '';

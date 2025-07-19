@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('pricing-form');
   const tableBody = document.querySelector('#pricing-table tbody');
   const typeSelect = document.getElementById('price-type');
+  const specialtySelect = document.getElementById('price-specialty');
   const patientSelect = document.getElementById('price-patient');
   const clinicianSelect = document.getElementById('price-clinician');
   const locationSelect = document.getElementById('price-location');
@@ -10,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const patients = loadData('patients');
   const clinicians = loadData('clinicians');
   const locations = loadData('locations');
+
+  const specialties = Array.from(new Set([
+    ...clinicians.map(c => c.specialty),
+    ...types.map(t => t.specialty)
+  ]));
 
   function populate(select, items, placeholder) {
     select.innerHTML = `<option value="">${placeholder}</option>`;
@@ -21,19 +27,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   populate(typeSelect, types, 'Any Type');
+  specialtySelect.innerHTML = '<option value="">Any Specialty</option>';
+  specialties.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s;
+    specialtySelect.appendChild(opt);
+  });
   populate(patientSelect, patients, 'Any Patient');
   populate(clinicianSelect, clinicians, 'Any Clinician');
   populate(locationSelect, locations, 'Any Location');
+
+  const durationInput = document.getElementById('price-duration');
+
+  typeSelect.addEventListener('change', () => {
+    const t = types.find(tp => tp.id == typeSelect.value);
+    if (t) {
+      specialtySelect.value = t.specialty;
+      durationInput.value = t.default_duration_minutes;
+    }
+  });
 
   function render() {
     tableBody.innerHTML = '';
     rules.forEach(r => {
       const tr = document.createElement('tr');
       const type = types.find(t => t.id == r.typeId)?.name || '';
-      const patient = patients.find(p => p.id == r.patientId)?.name || '';
-      const clinician = clinicians.find(c => c.id == r.clinicianId)?.name || '';
       const location = locations.find(l => l.id == r.locationId)?.name || '';
-      tr.innerHTML = `<td>${type}</td><td>${patient}</td><td>${clinician}</td><td>${location}</td><td>${r.duration||''}</td><td>${r.price}</td><td><button data-id="${r.id}" data-action="delete">Delete</button></td>`;
+      const clinician = clinicians.find(c => c.id == r.clinicianId)?.name || '';
+      const patient = patients.find(p => p.id == r.patientId)?.name || '';
+      tr.innerHTML = `<td>${type}</td><td>${r.specialty||''}</td><td>${r.duration||''}</td><td>${location}</td><td>${clinician}</td><td>${patient}</td><td>${r.price}</td><td><button data-id="${r.id}" data-action="delete">Delete</button></td>`;
       tableBody.appendChild(tr);
     });
   }
@@ -43,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rule = {
       id: nextId(rules),
       typeId: typeSelect.value || null,
+      specialty: specialtySelect.value || null,
       patientId: patientSelect.value || null,
       clinicianId: clinicianSelect.value || null,
       locationId: locationSelect.value || null,

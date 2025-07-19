@@ -15,19 +15,22 @@
   <h2>Appointments</h2>
   <form id="appointment-form">
     <input type="hidden" id="appointment-id">
-    <label>Patient
-      <select id="appointment-patient"></select>
-    </label>
     <label>Appointment Type
       <select id="appointment-type"></select>
+    </label>
+    <label>Specialty
+      <select id="appointment-specialty"></select>
+    </label>
+    <label>Duration (minutes)<input type="number" id="appointment-duration"></label>
+    <label>Location
+      <select id="appointment-location"></select>
     </label>
     <label>Clinician
       <select id="appointment-clinician"></select>
     </label>
-    <label>Location
-      <select id="appointment-location"></select>
+    <label>Patient
+      <select id="appointment-patient"></select>
     </label>
-    <label>Duration (minutes)<input type="number" id="appointment-duration" readonly></label>
     <label>Date & Time <input type="datetime-local" id="appointment-datetime" required></label>
     <label>Price <input type="number" id="appointment-price" required></label>
     <button type="submit">Save</button>
