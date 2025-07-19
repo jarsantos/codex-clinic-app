@@ -15,30 +15,34 @@
   <h2>Pricing Rules</h2>
   <p>Rules are evaluated in the following order:</p>
   <ol>
-    <li>Appointment Type + Patient</li>
-    <li>Appointment Type + Clinician (+Location)</li>
-    <li>Appointment Type + Duration (base)</li>
+    <li>Appointment Type <em>or</em> Specialty + Duration</li>
+    <li>Location</li>
+    <li>Clinician</li>
+    <li>Patient</li>
   </ol>
   <form id="pricing-form">
     <label>Appointment Type
       <select id="price-type"></select>
     </label>
-    <label>Patient
-      <select id="price-patient"></select>
+    <label>Specialty
+      <select id="price-specialty"></select>
+    </label>
+    <label>Duration (minutes)<input type="number" id="price-duration"></label>
+    <label>Location
+      <select id="price-location"></select>
     </label>
     <label>Clinician
       <select id="price-clinician"></select>
     </label>
-    <label>Location
-      <select id="price-location"></select>
+    <label>Patient
+      <select id="price-patient"></select>
     </label>
-    <label>Duration (minutes)<input type="number" id="price-duration"></label>
     <label>Price <input type="number" id="price-value" required></label>
     <button type="submit">Add Rule</button>
   </form>
   <table id="pricing-table">
     <thead>
-      <tr><th>Type</th><th>Patient</th><th>Clinician</th><th>Location</th><th>Duration</th><th>Price</th><th>Actions</th></tr>
+      <tr><th>Type</th><th>Specialty</th><th>Duration</th><th>Location</th><th>Clinician</th><th>Patient</th><th>Price</th><th>Actions</th></tr>
     </thead>
     <tbody></tbody>
   </table>
